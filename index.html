@@ -86,6 +86,23 @@
 </head>
 <body class="antialiased bg-grid overflow-x-hidden selection:bg-ink selection:text-white">
 
+    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-ink/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-white w-full max-w-md p-8 rounded-[2.5rem] border border-gray-100 shadow-2xl text-center transform scale-95 transition-transform duration-300">
+            <div class="w-24 h-24 bg-gray-50 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
+                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" 
+                     class="w-16 h-16 icon-3d animate-float" alt="Check">
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-3">Arsip Terkirim!</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                Dokumen instansi Anda berhasil diunggah!
+            </p>
+            <button onclick="closeSuccessModal()" 
+                    class="w-full bg-ink text-white py-4 rounded-full text-base font-bold minimal-button hover:shadow-xl hover:shadow-black/10">
+                Selesai
+            </button>
+        </div>
+    </div>
+
     <header class="fixed top-0 w-full z-50 bg-pure/80 backdrop-blur-md border-b border-gray-100">
         <nav class="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
             <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
@@ -150,8 +167,6 @@
 
             <div class="grid md:grid-cols-2 gap-8 reveal">
                 <div class="p-10 bg-gray-50 rounded-[2.5rem] border border-gray-200 opacity-80 flex flex-col items-center text-center">
-                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Wastebasket/3D/wastebasket_3d.png" 
-                         alt="Manual" class="w-20 h-20 icon-3d mb-6 grayscale opacity-60">
                     <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Wastebasket/3D/wastebasket_3d.png" 
                          alt="Manual" class="w-20 h-20 icon-3d mb-6 grayscale opacity-60">
                     <h3 class="font-display text-xl font-bold text-gray-600 mb-3">Cara Lama</h3>
@@ -240,7 +255,7 @@
                             <option value="Biro Perekonomian dan Administrasi Pembangunan">Biro Perekonomian dan Administrasi Pembangunan</option>
                             <option value="Biro Pengadaan Barang dan Jasa">Biro Pengadaan Barang dan Jasa</option>
                             <option value="Biro Organisasi">Biro Organisasi</option>
-                            <option value="Biro Administrasi Pimpinan">Biro Administration Pimpinan</option>
+                            <option value="Biro Administrasi Pimpinan">Biro Administrasi Pimpinan</option>
                             <option value="Biro Umum">Biro Umum</option>
                             <option value="Sekretariat DPRD">Sekretariat DPRD</option>
                             <option value="Inspektorat Daerah">Inspektorat Daerah</option>
@@ -389,6 +404,29 @@
         const form = document.getElementById('uploadForm');
         const submitBtn = document.getElementById('submitBtn');
         const statusMessage = document.getElementById('statusMessage');
+        const successModal = document.getElementById('successModal');
+
+        // Fungsi untuk Menampilkan Pop-Up Modal Sukses
+        function openSuccessModal() {
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
+            setTimeout(() => {
+                successModal.classList.remove('opacity-0');
+                successModal.querySelector('div').classList.remove('scale-95');
+            }, 10);
+        }
+
+        // Fungsi untuk Menutup Pop-Up Modal Sukses
+        function closeSuccessModal() {
+            successModal.classList.add('opacity-0');
+            successModal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                successModal.classList.remove('flex');
+                successModal.classList.add('hidden');
+                form.reset(); // Reset form hanya saat tombol selesai ditekan
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll halus kembali ke atas hero page
+            }, 300);
+        }
 
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
@@ -424,7 +462,6 @@
                     fileBase64: base64Data
                 };
 
-                // Menggunakan mode no-cors & Content-Type plain text agar lolos blokir CORS
                 fetch(APPS_SCRIPT_URL, {
                     method: "POST",
                     mode: "no-cors",
@@ -434,10 +471,8 @@
                     body: JSON.stringify(payload)
                 })
                 .then(response => {
-                    // Karena file terbukti selalu berhasil masuk ke Drive, eksekusi 
-                    // di blok ini mengonfirmasi data telah sukses diterima oleh Google server.
-                    showStatus('Berhasil! Dokumen Anda telah diarsipkan.', 'success');
-                    form.reset(); 
+                    // Panggil modal pop-up interaktif menggantikan tulisan hijau statis
+                    openSuccessModal();
                 })
                 .catch(error => {
                     showStatus('Koneksi gagal atau diblokir. Pastikan internet Anda stabil.', 'error');
