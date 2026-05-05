@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPMODAG - Pengarsipan Minimalis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        'pure': '#FAFAFA',
+                        'ink': '#0A0A0A',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #FAFAFA; 
+            color: #0A0A0A;
+        }
+
+        /* Subtle grid background for minimal tech feel */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        }
+
+        .icon-3d {
+            filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.08));
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .minimal-card:hover .icon-3d {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .minimal-button {
+            transition: all 0.2s ease;
+        }
+        .minimal-button:active {
+            transform: scale(0.96);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom File Input Styling */
+        input[type="file"]::file-selector-button {
+            border: none;
+            background: #0A0A0A;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: 1rem;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="antialiased bg-grid overflow-x-hidden selection:bg-ink selection:text-white">
+
+    <header class="fixed top-0 w-full z-50 bg-pure/80 backdrop-blur-md border-b border-gray-100">
+        <nav class="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Card%20index%20dividers/3D/card_index_dividers_3d.png" 
+                     alt="Logo" class="w-8 h-8 icon-3d">
+                <h1 class="font-display font-bold text-xl tracking-tight">SIPMODAG.</h1>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#solusi" class="text-sm font-medium hover:opacity-50 transition-opacity">Solusi</a>
+                <a href="#fitur" class="text-sm font-medium hover:opacity-50 transition-opacity">Sistem</a>
+                <a href="#dokumen" class="text-sm font-medium hover:opacity-50 transition-opacity">Dokumen</a>
+                <a href="#faq" class="text-sm font-medium hover:opacity-50 transition-opacity">Bantuan</a>
+                <a href="#upload-section" 
+                   class="bg-ink text-white px-6 py-2.5 rounded-full text-sm font-medium minimal-button hover:shadow-xl hover:shadow-black/20">
+                    Upload File
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="pt-40 pb-20 px-6 min-h-[90vh] flex flex-col justify-center items-center text-center">
+        <div class="max-w-4xl mx-auto reveal active">
+            
+            <div class="flex justify-center mb-10">
+                <div class="relative">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Open%20file%20folder/3D/open_file_folder_3d.png" 
+                         alt="3D Folder" 
+                         class="w-40 h-40 md:w-48 md:h-48 icon-3d animate-float">
+                    
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" 
+                         class="absolute -top-4 -right-8 w-16 h-16 icon-3d animate-float-delayed" alt="Check">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Page%20facing%20up/3D/page_facing_up_3d.png" 
+                         class="absolute -bottom-4 -left-8 w-16 h-16 icon-3d animate-float-delayed" style="animation-delay: 1.5s;" alt="Document">
+                </div>
+            </div>
+
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-gray-200 bg-white shadow-sm">
+                <span class="text-xs font-semibold tracking-wide text-gray-500 uppercase">Dinas P3AP2KB Prov. NTT</span>
+            </div>
+            
+            <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
+                Fokus pada isinya.<br>
+                <span class="text-gray-400">Biar kami urus arsipnya.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-500 mb-10 max-w-2xl mx-auto font-normal">
+                Kirim dokumen instansi Anda langsung dari halaman ini. Sistem kami akan otomatis menyusun, menamai ulang, dan melaporkannya di dashboard secara real-time.
+            </p>
+
+            <a href="#upload-section" 
+               class="inline-flex items-center justify-center bg-ink text-white px-8 py-4 rounded-full text-lg font-medium minimal-button hover:shadow-2xl hover:shadow-black/20 w-full sm:w-auto">
+                Mulai Upload
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+        </div>
+    </section>
+
+    <section id="solusi" class="scroll-mt-24 py-24 px-6 border-y border-gray-100 bg-white/50 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-3xl font-bold">Mengapa SIPMODAG Dibuat?</h2>
+                <p class="text-gray-500 mt-4 max-w-xl mx-auto">Kami memahami birokrasi pengarsipan seringkali memakan waktu. Kami mengubah proses manual menjadi sepenuhnya otomatis.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 reveal">
+                <div class="p-10 bg-gray-50 rounded-[2.5rem] border border-gray-200 opacity-80 flex flex-col items-center text-center">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Wastebasket/3D/wastebasket_3d.png" 
+                         alt="Manual" class="w-20 h-20 icon-3d mb-6 grayscale opacity-60">
+                    <h3 class="font-display text-xl font-bold text-gray-600 mb-3">Cara Lama</h3>
+                    <ul class="text-gray-500 text-sm space-y-3">
+                        <li>• Kirim file via WhatsApp atau Email</li>
+                        <li>• Nama file tidak seragam / berantakan</li>
+                        <li>• Admin P3AP2KB harus mengunduh satu-satu</li>
+                        <li>• Sulit melacak OPD mana yang belum setor</li>
+                    </ul>
+                </div>
+
+                <div class="p-10 bg-white rounded-[2.5rem] border-2 border-ink shadow-xl flex flex-col items-center text-center transform md:-translate-y-4">
+                    <div class="absolute -top-4 -right-4 bg-ink text-white text-xs font-bold px-4 py-1.5 rounded-full rotate-12">Solusi!</div>
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sparkles/3D/sparkles_3d.png" 
+                         alt="Otomatis" class="w-20 h-20 icon-3d mb-6 animate-float">
+                    <h3 class="font-display text-2xl font-bold text-ink mb-3">Dengan SIPMODAG</h3>
+                    <ul class="text-ink font-medium text-sm space-y-3">
+                        <li>• Unggah mandiri langsung dari website</li>
+                        <li>• File otomatis di-rename sesuai standar</li>
+                        <li>• Folder dibuat otomatis di Google Drive</li>
+                        <li>• Dashboard Real-Time di Google Sheets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fitur" class="scroll-mt-24 py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-display text-3xl font-bold mb-16 text-center reveal">Cara Sistem Bekerja</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-center minimal-card group reveal">
+                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Memo/3D/memo_3d.png" 
+                             alt="Isi Form" class="w-20 h-20 icon-3d">
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">1. Isi Form</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Pilih nama instansi Anda dari dropdown, lalu unggah dokumen yang diminta via form tanpa perlu proses login tambahan.</p>
+                </div>
+
+                <div class="text-center minimal-card group reveal" style="transition-delay: 100ms;">
+                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100 relative">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magic%20wand/3D/magic_wand_3d.png" 
+                             alt="Otomatisasi" class="w-20 h-20 icon-3d">
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">2. Auto-Routing</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Secara magis, API kami akan mengganti nama file Anda dan memindahkannya ke folder khusus instansi Anda di Google Drive.</p>
+                </div>
+
+                <div class="text-center minimal-card group reveal" style="transition-delay: 200ms;">
+                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Laptop/3D/laptop_3d.png" 
+                             alt="Dashboard" class="w-20 h-20 icon-3d">
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">3. Sinkronisasi Data</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Setiap entri yang berhasil akan langsung memperbarui status pelaporan di Dashboard Google Sheets pusat P3AP2KB.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="upload-section" class="scroll-mt-24 py-24 px-6 border-y border-gray-100 bg-pure">
+        <div class="max-w-3xl mx-auto reveal">
+            <div class="text-center mb-12">
+                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Inbox%20tray/3D/inbox_tray_3d.png" 
+                     alt="Upload" class="w-20 h-20 mx-auto mb-4 icon-3d animate-float">
+                <h2 class="font-display text-4xl font-bold mb-4">Portal Pengiriman Arsip</h2>
+                <p class="text-gray-500">Pilih instansi Anda, jenis dokumen, dan lampirkan file (Maks. 10MB).</p>
+            </div>
+
+            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] border border-gray-200 shadow-xl relative overflow-hidden">
+                <form id="uploadForm" class="space-y-6 relative z-10">
+                    
+                    <div>
+                        <label for="opdName" class="block text-sm font-bold text-gray-700 mb-2">Nama Instansi / OPD <span class="text-red-500">*</span></label>
+                        <select id="opdName" required
+                                class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-ink focus:border-ink transition-all appearance-none outline-none text-gray-700">
+                            <option value="" disabled selected>-- Pilih Instansi Anda --</option>
+                            <option value="Dinas Kesehatan">Dinas Kesehatan</option>
+                            <option value="BAPPEDA">BAPPEDA</option>
+                            <option value="Dinas Pendidikan">Dinas Pendidikan</option>
+                            <option value="Dinas Sosial">Dinas Sosial</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="tahun" class="block text-sm font-bold text-gray-700 mb-2">Tahun Dokumen <span class="text-red-500">*</span></label>
+                        <select id="tahun" required
+                                class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-ink focus:border-ink transition-all appearance-none outline-none text-gray-700">
+                            <option value="" disabled selected>-- Pilih Tahun --</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="docType" class="block text-sm font-bold text-gray-700 mb-2">Jenis Dokumen <span class="text-red-500">*</span></label>
+                        <select id="docType" required
+                                class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-ink focus:border-ink transition-all appearance-none outline-none text-gray-700">
+                            <option value="" disabled selected>-- Pilih Jenis Dokumen --</option>
+                            <option value="GAP">Gender Analysis Pathway (GAP)</option>
+                            <option value="GBS">Gender Budget Statement (GBS)</option>
+                            <option value="KAK">Kerangka Acuan Kegiatan (KAK)</option>
+                            <option value="SK Tim">SK Tim Focal Point</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="fileDoc" class="block text-sm font-bold text-gray-700 mb-2">Pilih File <span class="text-gray-400 font-normal">(PDF/Word/Excel)</span> <span class="text-red-500">*</span></label>
+                        <div class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-ink transition-all">
+                            <input type="file" id="fileDoc" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="w-full text-sm text-gray-500 outline-none">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" 
+                            class="w-full bg-ink text-white mt-4 py-4 rounded-full text-lg font-bold minimal-button flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-black/20">
+                        <span>Kirim Dokumen</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>
+                    </button>
+
+                </form>
+
+                <div id="statusMessage" class="hidden mt-6 p-4 rounded-2xl text-center text-sm font-medium transition-all"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dokumen" class="scroll-mt-24 py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4 reveal">
+                <h2 class="font-display text-4xl font-bold tracking-tight">Kategori<br>Dokumen.</h2>
+                <p class="text-gray-500 max-w-sm md:text-right pb-2">Siapkan file Anda sesuai dengan 4 dokumen analisis gender yang diwajibkan berikut.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magnifying%20glass%20tilted%20right/3D/magnifying_glass_tilted_right_3d.png" 
+                         alt="GAP" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">GAP</h4>
+                    <p class="text-sm text-gray-500">Gender Analysis Pathway. Panduan alur analisis kesenjangan.</p>
+                </div>
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 100ms;">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Money%20bag/3D/money_bag_3d.png" 
+                         alt="GBS" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">GBS</h4>
+                    <p class="text-sm text-gray-500">Gender Budget Statement. Dokumen pernyataan alokasi anggaran.</p>
+                </div>
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 200ms;">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Clipboard/3D/clipboard_3d.png" 
+                         alt="KAK" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">KAK</h4>
+                    <p class="text-sm text-gray-500">Kerangka Acuan Kegiatan yang responsif gender.</p>
+                </div>
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 300ms;">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/People%20hugging/3D/people_hugging_3d.png" 
+                         alt="SK Tim" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">SK Tim</h4>
+                    <p class="text-sm text-gray-500">SK Tim Focal Point Pengarusutamaan Gender di OPD.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-gray-200 bg-pure">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Card%20index%20dividers/3D/card_index_dividers_3d.png" alt="Logo" class="w-6 h-6 grayscale opacity-60">
+                <span class="font-display font-bold text-lg tracking-tight text-gray-800">SIPMODAG.</span>
+            </div>
+            
+            <div class="text-center md:text-right">
+                <p class="text-gray-800 font-medium text-sm mb-1">Dinas P3AP2KB Provinsi Nusa Tenggara Timur</p>
+                <p class="text-gray-500 text-xs">Pusat Pemerintahan Prov. NTT, Kota Kupang</p>
+                <p class="text-gray-400 text-xs mt-4">© 2026 Seluruh Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // --- SCRIPT UPLOAD FILE KE GOOGLE APPS SCRIPT --- //
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby83OyFqemjkd0cUhtehKSoA72fsi5EKg6rB7nDtv_g5jFcInTizJNk7wHrk_GGqi9TWg/exec";
+
+        const form = document.getElementById('uploadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            // Ambil data dari form, termasuk TAHUN
+            const opdName = document.getElementById('opdName').value;
+            const tahunDoc = document.getElementById('tahun').value;
+            const docType = document.getElementById('docType').value;
+            const fileInput = document.getElementById('fileDoc');
+            const file = fileInput.files[0];
+
+            if (file.size > 10 * 1024 * 1024) {
+                showStatus('Ukuran file terlalu besar. Maksimal 10MB.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Mengunggah...
+            `;
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+            statusMessage.classList.add('hidden');
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64Data = event.target.result.split(',')[1]; 
+                
+                // Susun paket data (Payload) dengan tambahan tahun
+                const payload = {
+                    namaOpd: opdName,
+                    tahun: tahunDoc, // Data tahun ditambahkan di sini
+                    jenisDokumen: docType,
+                    namaFile: file.name,
+                    mimeType: file.type,
+                    fileBase64: base64Data
+                };
+
+                fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status === "success") {
+                        showStatus('Berhasil! Dokumen Anda telah diarsipkan.', 'success');
+                        form.reset(); 
+                    } else {
+                        showStatus('Terjadi kesalahan di server.', 'error');
+                    }
+                })
+                .catch(error => {
+                    showStatus('Koneksi gagal. Pastikan internet Anda stabil.', 'error');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+                        <span>Kirim Dokumen</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>
+                    `;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                });
+            };
+            
+            reader.readAsDataURL(file);
+        });
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+            
+            if (type === 'success') {
+                statusMessage.classList.add('bg-green-100', 'text-green-700', 'border', 'border-green-200');
+            } else {
+                statusMessage.classList.add('bg-red-100', 'text-red-700', 'border', 'border-red-200');
+            }
+        }
+    </script>
+</body>
+</html>
