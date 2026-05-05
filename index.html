@@ -86,15 +86,33 @@
 </head>
 <body class="antialiased bg-grid overflow-x-hidden selection:bg-ink selection:text-white">
 
-    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-ink/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div id="progressModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-ink/40 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md p-8 rounded-[2.5rem] border border-gray-100 shadow-2xl transform scale-95 transition-transform duration-300">
+            <div class="w-20 h-20 bg-gray-50 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
+                <svg class="animate-spin h-10 w-10 text-ink" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-center mb-1">Mengunggah Dokumen</h3>
+            <p id="progressStatus" class="text-gray-500 text-sm text-center mb-6 font-medium">Menyiapkan berkas...</p>
+            
+            <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden mb-2">
+                <div id="progressBar" class="bg-ink h-full w-0 transition-all duration-300 rounded-full"></div>
+            </div>
+            <div class="text-right text-xs font-bold text-ink" id="progressPercent">0%</div>
+        </div>
+    </div>
+
+    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-ink/40 backdrop-blur-sm opacity-0 transition-opacity duration-300">
         <div class="bg-white w-full max-w-md p-8 rounded-[2.5rem] border border-gray-100 shadow-2xl text-center transform scale-95 transition-transform duration-300">
             <div class="w-24 h-24 bg-gray-50 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
                 <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" 
                      class="w-16 h-16 icon-3d animate-float" alt="Check">
             </div>
-            <h3 class="font-display text-2xl font-bold mb-3">Arsip Terkirim!</h3>
+            <h3 class="font-display text-2xl font-bold mb-3">Semua Arsip Terkirim!</h3>
             <p class="text-gray-500 text-sm leading-relaxed mb-8">
-                Dokumen instansi Anda berhasil diunggah!
+                Keempat dokumen instansi Anda berhasil diunggah ke sistem!
             </p>
             <button onclick="closeSuccessModal()" 
                     class="w-full bg-ink text-white py-4 rounded-full text-base font-bold minimal-button hover:shadow-xl hover:shadow-black/10">
@@ -171,7 +189,7 @@
                          alt="Manual" class="w-20 h-20 icon-3d mb-6 grayscale opacity-60">
                     <h3 class="font-display text-xl font-bold text-gray-600 mb-3">Cara Lama</h3>
                     <ul class="text-gray-500 text-sm space-y-3">
-                        <li>• Kirim file via WhatsApp atau Email</li>
+                        <li>• Kirim file via WhatsApp or Email</li>
                         <li>• Nama file tidak seragam / berantakan</li>
                         <li>• Admin P3AP2KB harus mengunduh satu-satu</li>
                         <li>• Sulit melacak OPD mana yang belum setor</li>
@@ -271,7 +289,7 @@
                 <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Inbox%20tray/3D/inbox_tray_3d.png" 
                      alt="Upload" class="w-20 h-20 mx-auto mb-4 icon-3d animate-float">
                 <h2 class="font-display text-4xl font-bold mb-4">Portal Pengiriman Arsip</h2>
-                <p class="text-gray-500">Pilih instansi Anda, jenis dokumen, dan lampirkan file (Maks. 10MB).</p>
+                <p class="text-gray-500">Pilih instansi Anda, tahun, dan lampirkan ke-4 file sekaligus (Maks. 10MB per file).</p>
             </div>
 
             <div class="bg-white p-8 md:p-12 rounded-[2.5rem] border border-gray-200 shadow-xl relative overflow-hidden">
@@ -316,7 +334,7 @@
                             <option value="Dinas Pemberdayaan Masyarakat dan Desa">Dinas Pemberdayaan Masyarakat dan Desa</option>
                             <option value="Dinas Perhubungan">Dinas Perhubungan</option>
                             <option value="Dinas Komunikasi dan Informatika">Dinas Komunikasi dan Informatika</option>
-                            <option value="Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu">Dinas PM-PTSP</option>
+                            <option value="Dinas Penanaman Modal dan Pelayanan Terpadun Satu Pintu">Dinas PM-PTSP</option>
                             <option value="Dinas Kepemudaan dan Olahraga">Dinas Kepemudaan dan Olahraga</option>
                             <option value="Dinas Perpustakaan dan Kearsipan">Dinas Perpustakaan dan Kearsipan</option>
                             <option value="Dinas Kelautan dan Perikanan">Dinas Kelautan dan Perikanan</option>
@@ -340,27 +358,36 @@
                     </div>
 
                     <div>
-                        <label for="docType" class="block text-sm font-bold text-gray-700 mb-2">Jenis Dokumen <span class="text-red-500">*</span></label>
-                        <select id="docType" required
-                                class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-ink focus:border-ink transition-all appearance-none outline-none text-gray-700">
-                            <option value="" disabled selected>-- Pilih Jenis Dokumen --</option>
-                            <option value="GAP">Gender Analysis Pathway (GAP)</option>
-                            <option value="GBS">Gender Budget Statement (GBS)</option>
-                            <option value="KAK">Kerangka Acuan Kegiatan (KAK)</option>
-                            <option value="SK Tim">SK Tim Focal Point</option>
-                        </select>
+                        <label for="fileGAP" class="block text-sm font-bold text-gray-700 mb-2">1. Dokumen GAP <span class="text-gray-400 font-normal">(PDF/Word/Excel)</span> <span class="text-red-500">*</span></label>
+                        <div class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-ink transition-all">
+                            <input type="file" id="fileGAP" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="w-full text-sm text-gray-500 outline-none">
+                        </div>
                     </div>
 
                     <div>
-                        <label for="fileDoc" class="block text-sm font-bold text-gray-700 mb-2">Pilih File <span class="text-gray-400 font-normal">(PDF/Word/Excel)</span> <span class="text-red-500">*</span></label>
+                        <label for="fileGBS" class="block text-sm font-bold text-gray-700 mb-2">2. Dokumen GBS <span class="text-gray-400 font-normal">(PDF/Word/Excel)</span> <span class="text-red-500">*</span></label>
                         <div class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-ink transition-all">
-                            <input type="file" id="fileDoc" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="w-full text-sm text-gray-500 outline-none">
+                            <input type="file" id="fileGBS" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="w-full text-sm text-gray-500 outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="fileKAK" class="block text-sm font-bold text-gray-700 mb-2">3. Dokumen KAK <span class="text-gray-400 font-normal">(PDF/Word/Excel)</span> <span class="text-red-500">*</span></label>
+                        <div class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-ink transition-all">
+                            <input type="file" id="fileKAK" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="w-full text-sm text-gray-500 outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="fileSK" class="block text-sm font-bold text-gray-700 mb-2">4. SK Tim Focal Point <span class="text-gray-400 font-normal">(PDF/Word/Excel)</span> <span class="text-red-500">*</span></label>
+                        <div class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-ink transition-all">
+                            <input type="file" id="fileSK" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="w-full text-sm text-gray-500 outline-none">
                         </div>
                     </div>
 
                     <button type="submit" id="submitBtn" 
                             class="w-full bg-ink text-white mt-4 py-4 rounded-full text-lg font-bold minimal-button flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-black/20">
-                        <span>Kirim Dokumen</span>
+                        <span>Kirim Semua Dokumen</span>
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>
                     </button>
                 </form>
@@ -405,8 +432,39 @@
         const submitBtn = document.getElementById('submitBtn');
         const statusMessage = document.getElementById('statusMessage');
         const successModal = document.getElementById('successModal');
+        
+        // Elemen Progress Modal Baru
+        const progressModal = document.getElementById('progressModal');
+        const progressStatus = document.getElementById('progressStatus');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
 
-        // Fungsi untuk Menampilkan Pop-Up Modal Sukses
+        // Fungsi Membuka Progress Modal (Loading)
+        function openProgressModal() {
+            progressModal.classList.remove('hidden');
+            progressModal.classList.add('flex');
+            updateProgressBar(0, 'Menyiapkan berkas...');
+            setTimeout(() => progressModal.classList.remove('opacity-0'), 10);
+        }
+
+        // Fungsi Menutup Progress Modal
+        function closeProgressModal() {
+            progressModal.classList.add('opacity-0');
+            setTimeout(() => {
+                progressModal.classList.remove('flex');
+                progressModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Fungsi Mengubah Nilai Bar Progres
+        function updateProgressBar(percent, statusText) {
+            progressBar.style.width = percent + '%';
+            progressPercent.textContent = percent + '%';
+            if(statusText) {
+                progressStatus.textContent = statusText;
+            }
+        }
+
         function openSuccessModal() {
             successModal.classList.remove('hidden');
             successModal.classList.add('flex');
@@ -416,77 +474,112 @@
             }, 10);
         }
 
-        // Fungsi untuk Menutup Pop-Up Modal Sukses
         function closeSuccessModal() {
             successModal.classList.add('opacity-0');
             successModal.querySelector('div').classList.add('scale-95');
             setTimeout(() => {
                 successModal.classList.remove('flex');
                 successModal.classList.add('hidden');
-                form.reset(); // Reset form hanya saat tombol selesai ditekan
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll halus kembali ke atas hero page
+                form.reset(); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
             }, 300);
         }
 
-        form.addEventListener('submit', function(e) {
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => resolve(event.target.result.split(',')[1]);
+                reader.onerror = (error) => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        form.addEventListener('submit', async function(e) {
             e.preventDefault(); 
 
             const opdName = document.getElementById('opdName').value;
             const tahunDoc = document.getElementById('tahun').value;
-            const docType = document.getElementById('docType').value;
-            const fileInput = document.getElementById('fileDoc');
-            const file = fileInput.files[0];
 
-            if (file.size > 10 * 1024 * 1024) {
-                showStatus('Ukuran file terlalu besar. Maksimal 10MB.', 'error');
-                return;
+            const documents = [
+                { id: 'fileGAP', type: 'GAP' },
+                { id: 'fileGBS', type: 'GBS' },
+                { id: 'fileKAK', type: 'KAK' },
+                { id: 'fileSK',  type: 'SK Tim' }
+            ];
+
+            // Validasi ukuran masing-masing file (Maks 10MB)
+            for (let doc of documents) {
+                const fileInput = document.getElementById(doc.id);
+                if (fileInput.files[0] && fileInput.files[0].size > 10 * 1024 * 1024) {
+                    showStatus(`Ukuran file dokumen ${doc.type} terlalu besar. Maksimal 10MB per file.`, 'error');
+                    return;
+                }
             }
 
+            // Nonaktifkan tombol kirim halaman utama & buka pop-up progress bar
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `
-                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                Mengunggah...
-            `;
             submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
             statusMessage.classList.add('hidden');
+            
+            openProgressModal();
 
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const base64Data = event.target.result.split(',')[1]; 
-                const payload = {
-                    namaOpd: opdName,
-                    tahun: tahunDoc,
-                    jenisDokumen: docType,
-                    namaFile: file.name,
-                    mimeType: file.type,
-                    fileBase64: base64Data
-                };
+            try {
+                // Loop unggah file secara berurutan
+                for (let i = 0; i < documents.length; i++) {
+                    const doc = documents[i];
+                    const fileInput = document.getElementById(doc.id);
+                    const file = fileInput.files[0];
 
-                fetch(APPS_SCRIPT_URL, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "text/plain"
-                    },
-                    body: JSON.stringify(payload)
-                })
-                .then(response => {
-                    // Panggil modal pop-up interaktif menggantikan tulisan hijau statis
+                    // Hitung persentase awal untuk berkas saat ini
+                    let currentPercent = Math.round((i / documents.length) * 100);
+                    updateProgressBar(currentPercent, `Mengirim ${doc.type} (${i + 1} dari 4)...`);
+
+                    const base64Data = await readFileAsBase64(file);
+
+                    const payload = {
+                        namaOpd: opdName,
+                        tahun: tahunDoc,
+                        jenisDokumen: doc.type,
+                        namaFile: file.name,
+                        mimeType: file.type,
+                        fileBase64: base64Data
+                    };
+
+                    // Mengirim data ke Google Apps Script Anda
+                    await fetch(APPS_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "text/plain"
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    // Update persentase setelah berkas berhasil terkirim
+                    let postPercent = Math.round(((i + 1) / documents.length) * 100);
+                    updateProgressBar(postPercent, `Dokumen ${doc.type} berhasil terunggah.`);
+                    
+                    // Jeda visual mini transisi antar file agar bar animasi terlihat halus
+                    await new Promise(resolve => setTimeout(resolve, 400));
+                }
+
+                // Tutup modal progress bar lalu alihkan ke modal sukses lengkap
+                closeProgressModal();
+                setTimeout(() => {
                     openSuccessModal();
-                })
-                .catch(error => {
-                    showStatus('Koneksi gagal atau diblokir. Pastikan internet Anda stabil.', 'error');
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `
-                        <span>Kirim Dokumen</span>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>
-                    `;
-                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
-                });
-            };
-            reader.readAsDataURL(file);
+                }, 350);
+
+            } catch (error) {
+                closeProgressModal();
+                showStatus('Koneksi gagal saat mengunggah. Silakan periksa jaringan internet Anda.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `
+                    <span>Kirim Semua Dokumen</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>
+                `;
+                submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+            }
         });
 
         function showStatus(message, type) {
