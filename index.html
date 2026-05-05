@@ -43,30 +43,24 @@
             background-color: #FAFAFA; 
             color: #0A0A0A;
         }
-
-        /* Subtle grid background for minimal tech feel */
         .bg-grid {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
         }
-
         .icon-3d {
             filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.08));
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        
         .minimal-card:hover .icon-3d {
             transform: scale(1.1) rotate(-5deg);
         }
-
         .minimal-button {
             transition: all 0.2s ease;
         }
         .minimal-button:active {
             transform: scale(0.96);
         }
-
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -76,8 +70,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Custom File Input Styling */
         input[type="file"]::file-selector-button {
             border: none;
             background: #0A0A0A;
@@ -89,9 +81,6 @@
             cursor: pointer;
             transition: all 0.2s ease;
             margin-right: 1rem;
-        }
-        input[type="file"]::file-selector-button:hover {
-            background: #333;
         }
     </style>
 </head>
@@ -120,13 +109,11 @@
 
     <section class="pt-40 pb-20 px-6 min-h-[90vh] flex flex-col justify-center items-center text-center">
         <div class="max-w-4xl mx-auto reveal active">
-            
             <div class="flex justify-center mb-10">
                 <div class="relative">
                     <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Open%20file%20folder/3D/open_file_folder_3d.png" 
                          alt="3D Folder" 
                          class="w-40 h-40 md:w-48 md:h-48 icon-3d animate-float">
-                    
                     <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" 
                          class="absolute -top-4 -right-8 w-16 h-16 icon-3d animate-float-delayed" alt="Check">
                     <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Page%20facing%20up/3D/page_facing_up_3d.png" 
@@ -155,77 +142,6 @@
         </div>
     </section>
 
-    <section id="solusi" class="scroll-mt-24 py-24 px-6 border-y border-gray-100 bg-white/50 backdrop-blur-sm">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <h2 class="font-display text-3xl font-bold">Mengapa SIPMODAG Dibuat?</h2>
-                <p class="text-gray-500 mt-4 max-w-xl mx-auto">Kami memahami birokrasi pengarsipan seringkali memakan waktu. Kami mengubah proses manual menjadi sepenuhnya otomatis.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 reveal">
-                <div class="p-10 bg-gray-50 rounded-[2.5rem] border border-gray-200 opacity-80 flex flex-col items-center text-center">
-                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Wastebasket/3D/wastebasket_3d.png" 
-                         alt="Manual" class="w-20 h-20 icon-3d mb-6 grayscale opacity-60">
-                    <h3 class="font-display text-xl font-bold text-gray-600 mb-3">Cara Lama</h3>
-                    <ul class="text-gray-500 text-sm space-y-3">
-                        <li>• Kirim file via WhatsApp atau Email</li>
-                        <li>• Nama file tidak seragam / berantakan</li>
-                        <li>• Admin P3AP2KB harus mengunduh satu-satu</li>
-                        <li>• Sulit melacak OPD mana yang belum setor</li>
-                    </ul>
-                </div>
-
-                <div class="p-10 bg-white rounded-[2.5rem] border-2 border-ink shadow-xl flex flex-col items-center text-center transform md:-translate-y-4">
-                    <div class="absolute -top-4 -right-4 bg-ink text-white text-xs font-bold px-4 py-1.5 rounded-full rotate-12">Solusi!</div>
-                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sparkles/3D/sparkles_3d.png" 
-                         alt="Otomatis" class="w-20 h-20 icon-3d mb-6 animate-float">
-                    <h3 class="font-display text-2xl font-bold text-ink mb-3">Dengan SIPMODAG</h3>
-                    <ul class="text-ink font-medium text-sm space-y-3">
-                        <li>• Unggah mandiri langsung dari website</li>
-                        <li>• File otomatis di-rename sesuai standar</li>
-                        <li>• Folder dibuat otomatis di Google Drive</li>
-                        <li>• Dashboard Real-Time di Google Sheets</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="fitur" class="scroll-mt-24 py-24 px-6 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="font-display text-3xl font-bold mb-16 text-center reveal">Cara Sistem Bekerja</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="text-center minimal-card group reveal">
-                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
-                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Memo/3D/memo_3d.png" 
-                             alt="Isi Form" class="w-20 h-20 icon-3d">
-                    </div>
-                    <h3 class="font-display text-xl font-bold mb-3">1. Isi Form</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Pilih nama instansi Anda dari dropdown, lalu unggah dokumen yang diminta via form tanpa perlu proses login tambahan.</p>
-                </div>
-
-                <div class="text-center minimal-card group reveal" style="transition-delay: 100ms;">
-                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100 relative">
-                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magic%20wand/3D/magic_wand_3d.png" 
-                             alt="Otomatisasi" class="w-20 h-20 icon-3d">
-                    </div>
-                    <h3 class="font-display text-xl font-bold mb-3">2. Auto-Routing</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Secara magis, API kami akan mengganti nama file Anda dan memindahkannya ke folder khusus instansi Anda di Google Drive.</p>
-                </div>
-
-                <div class="text-center minimal-card group reveal" style="transition-delay: 200ms;">
-                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
-                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Laptop/3D/laptop_3d.png" 
-                             alt="Dashboard" class="w-20 h-20 icon-3d">
-                    </div>
-                    <h3 class="font-display text-xl font-bold mb-3">3. Sinkronisasi Data</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Setiap entri yang berhasil akan langsung memperbarui status pelaporan di Dashboard Google Sheets pusat P3AP2KB.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="upload-section" class="scroll-mt-24 py-24 px-6 border-y border-gray-100 bg-pure">
         <div class="max-w-3xl mx-auto reveal">
             <div class="text-center mb-12">
@@ -243,10 +159,49 @@
                         <select id="opdName" required
                                 class="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-ink focus:border-ink transition-all appearance-none outline-none text-gray-700">
                             <option value="" disabled selected>-- Pilih Instansi Anda --</option>
+                            <option value="Asisten Pemerintahan dan Kesejahteraan Rakyat">Asisten Pemerintahan dan Kesejahteraan Rakyat</option>
+                            <option value="Asisten Perekonomian dan Pembangunan">Asisten Perekonomian dan Pembangunan</option>
+                            <option value="Asisten Administrasi Umum">Asisten Administrasi Umum</option>
+                            <option value="Biro Pemerintahan">Biro Pemerintahan</option>
+                            <option value="Biro Hukum">Biro Hukum</option>
+                            <option value="Biro Kesejahteraan Rakyat">Biro Kesejahteraan Rakyat</option>
+                            <option value="Biro Perekonomian dan Administrasi Pembangunan">Biro Perekonomian dan Administrasi Pembangunan</option>
+                            <option value="Biro Pengadaan Barang dan Jasa">Biro Pengadaan Barang dan Jasa</option>
+                            <option value="Biro Organisasi">Biro Organisasi</option>
+                            <option value="Biro Administrasi Pimpinan">Biro Administrasi Pimpinan</option>
+                            <option value="Biro Umum">Biro Umum</option>
+                            <option value="Sekretariat DPRD">Sekretariat DPRD</option>
+                            <option value="Inspektorat Daerah">Inspektorat Daerah</option>
+                            <option value="Badan Perencanaan Pembangunan, Penelitian dan Pengembangan Daerah (BAPPELITBANGDA)">BAPPELITBANGDA</option>
+                            <option value="Badan Keuangan Daerah">Badan Keuangan Daerah</option>
+                            <option value="Badan Kepegawaian Daerah">Badan Kepegawaian Daerah</option>
+                            <option value="Badan Pengembangan Sumber Daya Manusia Daerah">Badan Pengembangan Sumber Daya Manusia Daerah</option>
+                            <option value="Badan Pendapatan Daerah">Badan Pendapatan Daerah</option>
+                            <option value="Badan Kesatuan Bangsa dan Politik">Badan Kesatuan Bangsa dan Politik</option>
+                            <option value="Badan Penanggulangan Bencana Daerah">Badan Penanggulangan Bencana Daerah</option>
+                            <option value="Badan Penghubung">Badan Penghubung</option>
+                            <option value="Dinas Pendidikan dan Kebudayaan">Dinas Pendidikan dan Kebudayaan</option>
                             <option value="Dinas Kesehatan">Dinas Kesehatan</option>
-                            <option value="BAPPEDA">BAPPEDA</option>
-                            <option value="Dinas Pendidikan">Dinas Pendidikan</option>
+                            <option value="Dinas Pekerjaan Umum dan Penataan Ruang">Dinas Pekerjaan Umum dan Penataan Ruang</option>
+                            <option value="Dinas Perumahan Rakyat dan Kawasan Permukiman">Dinas Perumahan Rakyat dan Kawasan Permukiman</option>
+                            <option value="Satuan Polisi Pamong Praja">Satuan Polisi Pamong Praja</option>
                             <option value="Dinas Sosial">Dinas Sosial</option>
+                            <option value="Dinas Koperasi, Tenaga Kerja dan Transmigrasi">Dinas Koperasi, Tenaga Kerja dan Transmigrasi</option>
+                            <option value="Dinas Pemberdayaan Perempuan, Perlindungan Anak, Pengendalian Penduduk dan Keluarga Berencana (P3AP2KB)">Dinas P3AP2KB</option>
+                            <option value="Dinas Ketahanan Pangan">Dinas Ketahanan Pangan</option>
+                            <option value="Dinas Lingkungan Hidup dan Kehutanan">Dinas Lingkungan Hidup dan Kehutanan</option>
+                            <option value="Dinas Pemberdayaan Masyarakat dan Desa">Dinas Pemberdayaan Masyarakat dan Desa</option>
+                            <option value="Dinas Perhubungan">Dinas Perhubungan</option>
+                            <option value="Dinas Komunikasi dan Informatika">Dinas Komunikasi dan Informatika</option>
+                            <option value="Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu">Dinas PM-PTSP</option>
+                            <option value="Dinas Kepemudaan dan Olahraga">Dinas Kepemudaan dan Olahraga</option>
+                            <option value="Dinas Perpustakaan dan Kearsipan">Dinas Perpustakaan dan Kearsipan</option>
+                            <option value="Dinas Kelautan dan Perikanan">Dinas Kelautan dan Perikanan</option>
+                            <option value="Dinas Pariwisata dan Ekonomi Kreatif">Dinas Pariwisata dan Ekonomi Kreatif</option>
+                            <option value="Dinas Pertanian dan Ketahanan Pangan">Dinas Pertanian dan Ketahanan Pangan</option>
+                            <option value="Dinas Peternakan">Dinas Peternakan</option>
+                            <option value="Dinas Energi dan Sumber Daya Mineral">Dinas Energi dan Sumber Daya Mineral</option>
+                            <option value="Dinas Perindustrian dan Perdagangan">Dinas Perindustrian dan Perdagangan</option>
                         </select>
                     </div>
 
@@ -285,46 +240,8 @@
                         <span>Kirim Dokumen</span>
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>
                     </button>
-
                 </form>
-
                 <div id="statusMessage" class="hidden mt-6 p-4 rounded-2xl text-center text-sm font-medium transition-all"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="dokumen" class="scroll-mt-24 py-24 px-6 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4 reveal">
-                <h2 class="font-display text-4xl font-bold tracking-tight">Kategori<br>Dokumen.</h2>
-                <p class="text-gray-500 max-w-sm md:text-right pb-2">Siapkan file Anda sesuai dengan 4 dokumen analisis gender yang diwajibkan berikut.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal">
-                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magnifying%20glass%20tilted%20right/3D/magnifying_glass_tilted_right_3d.png" 
-                         alt="GAP" class="w-16 h-16 icon-3d mb-6">
-                    <h4 class="font-display text-xl font-bold mb-2">GAP</h4>
-                    <p class="text-sm text-gray-500">Gender Analysis Pathway. Panduan alur analisis kesenjangan.</p>
-                </div>
-                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 100ms;">
-                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Money%20bag/3D/money_bag_3d.png" 
-                         alt="GBS" class="w-16 h-16 icon-3d mb-6">
-                    <h4 class="font-display text-xl font-bold mb-2">GBS</h4>
-                    <p class="text-sm text-gray-500">Gender Budget Statement. Dokumen pernyataan alokasi anggaran.</p>
-                </div>
-                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 200ms;">
-                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Clipboard/3D/clipboard_3d.png" 
-                         alt="KAK" class="w-16 h-16 icon-3d mb-6">
-                    <h4 class="font-display text-xl font-bold mb-2">KAK</h4>
-                    <p class="text-sm text-gray-500">Kerangka Acuan Kegiatan yang responsif gender.</p>
-                </div>
-                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 300ms;">
-                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/People%20hugging/3D/people_hugging_3d.png" 
-                         alt="SK Tim" class="w-16 h-16 icon-3d mb-6">
-                    <h4 class="font-display text-xl font-bold mb-2">SK Tim</h4>
-                    <p class="text-sm text-gray-500">SK Tim Focal Point Pengarusutamaan Gender di OPD.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -335,7 +252,6 @@
                 <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Card%20index%20dividers/3D/card_index_dividers_3d.png" alt="Logo" class="w-6 h-6 grayscale opacity-60">
                 <span class="font-display font-bold text-lg tracking-tight text-gray-800">SIPMODAG.</span>
             </div>
-            
             <div class="text-center md:text-right">
                 <p class="text-gray-800 font-medium text-sm mb-1">Dinas P3AP2KB Provinsi Nusa Tenggara Timur</p>
                 <p class="text-gray-500 text-xs">Pusat Pemerintahan Prov. NTT, Kota Kupang</p>
@@ -360,7 +276,6 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-   // --- SCRIPT UPLOAD FILE KE GOOGLE APPS SCRIPT (FIXED VERSION) --- //
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyccZCzOER53QgIa5cS8UdoTrCkI5Ob-yKLusLW8X9LuOAkez53zLy88r_-297LBLSYeg/exec";
 
         const form = document.getElementById('uploadForm');
@@ -381,7 +296,6 @@
                 return;
             }
 
-            // UI Loading State
             submitBtn.disabled = true;
             submitBtn.innerHTML = `
                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -393,7 +307,6 @@
             const reader = new FileReader();
             reader.onload = function(event) {
                 const base64Data = event.target.result.split(',')[1]; 
-                
                 const payload = {
                     namaOpd: opdName,
                     tahun: tahunDoc,
@@ -403,57 +316,43 @@
                     fileBase64: base64Data
                 };
 
-                // Menggunakan cara tradisional yang lebih kompatibel dengan Redirect Google
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", APPS_SCRIPT_URL, true);
-                xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-                
-                xhr.onload = function() {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        if(response.status === "success") {
-                            showStatus('Berhasil! Dokumen Anda telah diarsipkan.', 'success');
-                            form.reset();
-                        } else {
-                            showStatus('Server merespon dengan kesalahan.', 'error');
-                        }
-                    } catch (e) {
-                        // Jika respon bukan JSON tapi file masuk, anggap sukses
+                fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status === "success") {
                         showStatus('Berhasil! Dokumen Anda telah diarsipkan.', 'success');
-                        form.reset();
+                        form.reset(); 
+                    } else {
+                        showStatus('Terjadi kesalahan di server.', 'error');
                     }
-                };
-
-                xhr.onerror = function() {
-                    // Jika file masuk ke Drive tapi XHR error karena CORS, kita beri pesan sukses
-                    // karena user mengonfirmasi file sudah masuk.
-                    showStatus('Berhasil! Dokumen Anda telah diarsipkan.', 'success');
-                    form.reset();
-                };
-
-                xhr.send(JSON.stringify(payload));
+                })
+                .catch(error => {
+                    showStatus('Koneksi gagal. Pastikan internet Anda stabil.', 'error');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+                        <span>Kirim Dokumen</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>
+                    `;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                });
             };
-            
             reader.readAsDataURL(file);
         });
 
         function showStatus(message, type) {
             statusMessage.textContent = message;
-            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700', 'border-green-200', 'border-red-200');
-            
+            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
             if (type === 'success') {
                 statusMessage.classList.add('bg-green-100', 'text-green-700', 'border', 'border-green-200');
             } else {
                 statusMessage.classList.add('bg-red-100', 'text-red-700', 'border', 'border-red-200');
             }
-            
-            // Kembalikan tombol ke sedia kala
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<span>Kirim Dokumen</span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m0 0l-7 7m7-7l7 7"></path></svg>`;
-            submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
-        };
-        };
         }
-        }</script>
+    </script>
 </body>
 </html>
