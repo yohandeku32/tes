@@ -98,7 +98,6 @@
                 <a href="#solusi" class="text-sm font-medium hover:opacity-50 transition-opacity">Solusi</a>
                 <a href="#fitur" class="text-sm font-medium hover:opacity-50 transition-opacity">Sistem</a>
                 <a href="#dokumen" class="text-sm font-medium hover:opacity-50 transition-opacity">Dokumen</a>
-                <a href="#faq" class="text-sm font-medium hover:opacity-50 transition-opacity">Bantuan</a>
                 <a href="#upload-section" 
                    class="bg-ink text-white px-6 py-2.5 rounded-full text-sm font-medium minimal-button hover:shadow-xl hover:shadow-black/20">
                     Upload File
@@ -139,6 +138,77 @@
                 Mulai Upload
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </a>
+        </div>
+    </section>
+
+    <section id="solusi" class="scroll-mt-24 py-24 px-6 border-y border-gray-100 bg-white/50 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-3xl font-bold">Mengapa SIPMODAG Dibuat?</h2>
+                <p class="text-gray-500 mt-4 max-w-xl mx-auto">Kami memahami birokrasi pengarsipan seringkali memakan waktu. Kami mengubah proses manual menjadi sepenuhnya otomatis.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 reveal">
+                <div class="p-10 bg-gray-50 rounded-[2.5rem] border border-gray-200 opacity-80 flex flex-col items-center text-center">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Wastebasket/3D/wastebasket_3d.png" 
+                         alt="Manual" class="w-20 h-20 icon-3d mb-6 grayscale opacity-60">
+                    <h3 class="font-display text-xl font-bold text-gray-600 mb-3">Cara Lama</h3>
+                    <ul class="text-gray-500 text-sm space-y-3">
+                        <li>• Kirim file via WhatsApp atau Email</li>
+                        <li>• Nama file tidak seragam / berantakan</li>
+                        <li>• Admin P3AP2KB harus mengunduh satu-satu</li>
+                        <li>• Sulit melacak OPD mana yang belum setor</li>
+                    </ul>
+                </div>
+
+                <div class="p-10 bg-white rounded-[2.5rem] border-2 border-ink shadow-xl relative flex flex-col items-center text-center transform md:-translate-y-4">
+                    <div class="absolute -top-4 -right-4 bg-ink text-white text-xs font-bold px-4 py-1.5 rounded-full rotate-12">Solusi!</div>
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sparkles/3D/sparkles_3d.png" 
+                         alt="Otomatis" class="w-20 h-20 icon-3d mb-6 animate-float">
+                    <h3 class="font-display text-2xl font-bold text-ink mb-3">Dengan SIPMODAG</h3>
+                    <ul class="text-ink font-medium text-sm space-y-3">
+                        <li>• Unggah mandiri langsung dari website</li>
+                        <li>• File otomatis di-rename sesuai standar</li>
+                        <li>• Folder dibuat otomatis di Google Drive</li>
+                        <li>• Dashboard Real-Time di Google Sheets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fitur" class="scroll-mt-24 py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-display text-3xl font-bold mb-16 text-center reveal">Cara Sistem Bekerja</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-center minimal-card group reveal">
+                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Memo/3D/memo_3d.png" 
+                             alt="Isi Form" class="w-20 h-20 icon-3d">
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">1. Isi Form</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Pilih nama instansi Anda dari dropdown, lalu unggah dokumen yang diminta via form tanpa perlu proses login tambahan.</p>
+                </div>
+
+                <div class="text-center minimal-card group reveal" style="transition-delay: 100ms;">
+                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100 relative">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magic%20wand/3D/magic_wand_3d.png" 
+                             alt="Otomatisasi" class="w-20 h-20 icon-3d">
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">2. Auto-Routing</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Secara magis, API kami akan mengganti nama file Anda dan memindahkannya ke folder khusus instansi Anda di Google Drive.</p>
+                </div>
+
+                <div class="text-center minimal-card group reveal" style="transition-delay: 200ms;">
+                    <div class="bg-pure w-32 h-32 rounded-full mx-auto flex items-center justify-center mb-6 border border-gray-100">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Laptop/3D/laptop_3d.png" 
+                             alt="Dashboard" class="w-20 h-20 icon-3d">
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">3. Sinkronisasi Data</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Setiap entri yang berhasil akan langsung memperbarui status pelaporan di Dashboard Google Sheets pusat P3AP2KB.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -242,6 +312,42 @@
                     </button>
                 </form>
                 <div id="statusMessage" class="hidden mt-6 p-4 rounded-2xl text-center text-sm font-medium transition-all"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dokumen" class="scroll-mt-24 py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4 reveal">
+                <h2 class="font-display text-4xl font-bold tracking-tight">Kategori<br>Dokumen.</h2>
+                <p class="text-gray-500 max-w-sm md:text-right pb-2">Siapkan file Anda sesuai dengan 4 dokumen analisis gender yang diwajibkan berikut.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magnifying%20glass%20tilted%20right/3D/magnifying_glass_tilted_right_3d.png" 
+                         alt="GAP" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">GAP</h4>
+                    <p class="text-sm text-gray-500">Gender Analysis Pathway. Panduan alur analisis kesenjangan.</p>
+                </div>
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 100ms;">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Money%20bag/3D/money_bag_3d.png" 
+                         alt="GBS" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">GBS</h4>
+                    <p class="text-sm text-gray-500">Gender Budget Statement. Dokumen pernyataan alokasi anggaran.</p>
+                </div>
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 200ms;">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Clipboard/3D/clipboard_3d.png" 
+                         alt="KAK" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">KAK</h4>
+                    <p class="text-sm text-gray-500">Kerangka Acuan Kegiatan yang responsif gender.</p>
+                </div>
+                <div class="bg-pure p-8 rounded-[2rem] border border-gray-100 hover:border-gray-300 transition-colors minimal-card reveal" style="transition-delay: 300ms;">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/People%20hugging/3D/people_hugging_3d.png" 
+                         alt="SK Tim" class="w-16 h-16 icon-3d mb-6">
+                    <h4 class="font-display text-xl font-bold mb-2">SK Tim</h4>
+                    <p class="text-sm text-gray-500">SK Tim Focal Point Pengarusutamaan Gender di OPD.</p>
+                </div>
             </div>
         </div>
     </section>
