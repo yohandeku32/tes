@@ -80,53 +80,12 @@
         
         .floating-form {
             box-shadow: 0 25px 50px -12px rgba(30, 58, 138, 0.25);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .floating-form:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 60px -12px rgba(30, 58, 138, 0.3);
         }
     </style>
 </head>
 <body class="antialiased bg-pattern overflow-x-hidden selection:bg-gov-blue selection:text-white">
 
     <div class="fixed top-0 left-0 w-full h-1.5 bg-gov-gold z-[60]"></div>
-
-    <div id="progressModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm opacity-0 transition-opacity duration-300">
-        <div class="bg-white w-full max-w-md p-8 rounded-xl border border-gray-200 shadow-2xl transform scale-95 transition-transform duration-300">
-            <div class="w-16 h-16 bg-blue-50 rounded-full mx-auto flex items-center justify-center mb-6 border border-blue-100">
-                <svg class="animate-spin h-8 w-8 text-gov-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-            </div>
-            <h3 class="font-bold text-lg text-center text-gov-text mb-1">Menyinkronkan Data</h3>
-            <p id="progressStatus" class="text-gray-500 text-sm text-center mb-6 font-medium">Menyimpan arsip ke server instansi...</p>
-            <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden mb-2">
-                <div id="progressBar" class="bg-gov-blue h-full w-0 transition-all duration-300 rounded-full"></div>
-            </div>
-            <div class="text-right text-xs font-bold text-gov-blue" id="progressPercent">0%</div>
-        </div>
-    </div>
-
-    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
-        <div class="bg-white w-full max-w-xs p-8 rounded-[2rem] shadow-2xl text-center transform scale-95 transition-all duration-300 border border-gray-100">
-            <div class="w-20 h-20 bg-green-50 rounded-full mx-auto flex items-center justify-center mb-6">
-                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                </svg>
-            </div>
-            
-            <h3 class="font-bold text-2xl text-gray-800 mb-2">Sukses!</h3>
-            <p class="text-gray-500 text-sm mb-8 leading-relaxed">
-                Dokumen Anda berhasil dikirim.
-            </p>
-            
-            <button onclick="closeSuccessModal()" class="w-full bg-gov-blue text-white py-3.5 rounded-xl text-sm font-bold hover:bg-blue-800 transition-all shadow-lg shadow-gov-blue/20 active:scale-95">
-                Oke
-            </button>
-        </div>
-    </div>
 
     <header class="fixed top-1.5 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
@@ -203,7 +162,7 @@
                         <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Inbox%20tray/3D/inbox_tray_3d.png" class="w-8 h-8 icon-gov">
                     </div>
                     <h3 class="font-bold text-lg text-gov-text mb-3">1. Kirim Sekaligus</h3>
-                    <p class="text-gray-600 text-sm">Unggah 4 dokumen wajib PUG langsung dalam satu form tanpa perlu repot login.</p>
+                    <p class="text-gray-600 text-sm">Unggah 4 dokumen wajib PUG langsung dalam satu form secara elektronik.</p>
                 </div>
 
                 <div class="gov-card p-8 rounded-2xl text-center">
@@ -231,7 +190,7 @@
             <div class="lg:col-span-4 lg:sticky lg:top-32">
                 <div class="mb-8">
                     <h2 class="font-serif text-3xl font-bold text-gov-text">Persyaratan Berkas</h2>
-                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">Pastikan 4 berkas di bawah ini telah disiapkan dalam format (PDF/Word/Excel) sebelum Anda mulai mengisi formulir di samping.</p>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">Pastikan 4 berkas di bawah ini telah disiapkan dalam format (PDF/Word/Excel) sebelum Anda mulai mengisi formulir pengumpulan.</p>
                 </div>
 
                 <div class="flex flex-col gap-4">
@@ -269,8 +228,35 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-8">
-                <div class="bg-white rounded-[2rem] overflow-hidden relative border border-gray-200 floating-form z-30">
+            <div class="lg:col-span-8 flex flex-col gap-6">
+                
+                <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-[2rem] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
+                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
+                            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Page%20with%20curl/3D/page_with_curl_3d.png" class="w-7 h-7" alt="Form">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-amber-900 text-base">Pengunggahan Berkas Sementara</h3>
+                            <p class="text-amber-700 text-xs mt-0.5">Untuk saat ini, pengiriman berkas wajib dialihkan secara resmi menggunakan Google Form.</p>
+                        </div>
+                    </div>
+                    <a href="https://tautan-google-form-anda-disini.com" target="_blank" class="w-full sm:w-auto text-center bg-gov-gold text-white px-6 py-3.5 rounded-xl font-bold text-sm shadow-md hover:bg-amber-700 transition-all whitespace-nowrap active:scale-95 flex items-center justify-center gap-2">
+                        <span>Buka Google Form</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-[2rem] overflow-hidden relative border border-gray-200 floating-form z-30 opacity-60 select-none pointer-events-none">
+                    
+                    <div class="absolute inset-0 bg-slate-900/5 backdrop-blur-[2px] z-50 flex flex-col items-center justify-center p-4 text-center">
+                        <div class="bg-white p-4 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center max-w-xs">
+                            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Locked/3D/locked_3d.png" alt="Terkunci" class="w-14 h-14 mb-3 animate-pulse">
+                            <h4 class="font-bold text-gov-text text-sm uppercase tracking-wider text-gov-blue">Fitur Unggah Langsung</h4>
+                            <span class="bg-blue-50 text-gov-blue text-[10px] font-bold px-2.5 py-1 rounded-md mt-1 mb-2 tracking-wide uppercase border border-blue-100">Coming Soon</span>
+                            <p class="text-gray-500 text-xs leading-relaxed">Unggahan langsung dari dashboard portal ini sedang dikembangkan dan akan segera dibuka pada tahap berikutnya.</p>
+                        </div>
+                    </div>
+
                     <div class="bg-white px-8 py-8 border-b border-gray-100 relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-1.5 bg-gov-blue"></div>
                         <div class="flex items-center gap-4">
@@ -285,139 +271,67 @@
                     </div>
 
                     <div class="p-8 md:p-10 bg-white">
-                        <form id="uploadForm" class="space-y-6">
+                        <form id="uploadForm" class="space-y-6" onsubmit="return false;">
                             
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="md:col-span-2 relative">
-                                    <label for="opdName" class="block text-sm font-bold text-gray-700 mb-2">Instansi / OPD <span class="text-red-500">*</span></label>
-                                    <select id="opdName" required class="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-gov-blue/10 focus:border-gov-blue transition-all outline-none text-gray-800 text-sm appearance-none shadow-sm cursor-pointer">
-                                        <option value="" disabled selected>-- Pilih Instansi Anda dari daftar --</option>
-                                        <optgroup label="Sekretariat & Lembaga Teknis">
-                                            <option value="Sekretariat Daerah">Sekretariat Daerah</option>
-                                            <option value="Sekretariat DPRD">Sekretariat DPRD</option>
-                                            <option value="Inspektorat Daerah">Inspektorat Daerah</option>
-                                            <option value="BAPPELITBANGDA">BAPPELITBANGDA</option>
-                                            <option value="Badan Keuangan Aset Daerah">Badan Keuangan Aset Daerah</option>
-                                            <option value="Badan Pendapatan Daerah">Badan Pendapatan Daerah</option>
-                                            <option value="Badan Kepegawaian Daerah">Badan Kepegawaian Daerah</option>
-                                            <option value="Badan Pengembangan SDM">Badan Pengembangan SDM</option>
-                                            <option value="Badan Penanggulangan Bencana Daerah">Badan Penanggulangan Bencana Daerah</option>
-                                            <option value="Badan Kesatuan Bangsa dan Politik">Badan Kesatuan Bangsa dan Politik</option>
-                                            <option value="Badan Penghubung">Badan Penghubung</option>
-                                        </optgroup>
-                                        <optgroup label="Dinas-Dinas">
-                                            <option value="Dinas Pendidikan dan Kebudayaan">Dinas Pendidikan dan Kebudayaan</option>
-                                            <option value="Dinas Kesehatan">Dinas Kesehatan</option>
-                                            <option value="Dinas PUPR">Dinas PUPR</option>
-                                            <option value="Dinas Perumahan Rakyat & Kawasan Permukiman">Dinas Perumahan Rakyat & Kawasan Permukiman</option>
-                                            <option value="Satuan Polisi Pamong Praja">Satuan Polisi Pamong Praja</option>
-                                            <option value="Dinas Sosial">Dinas Sosial</option>
-                                            <option value="Dinas Tenaga Kerja dan Transmigrasi">Dinas Tenaga Kerja dan Transmigrasi</option>
-                                            <option value="Dinas P3AP2KB">Dinas P3AP2KB</option>
-                                            <option value="Dinas Pangan">Dinas Pangan</option>
-                                            <option value="Dinas Lingkungan Hidup dan Kehutanan">Dinas Lingkungan Hidup dan Kehutanan</option>
-                                            <option value="Dinas Dukcapil">Dinas Dukcapil</option>
-                                            <option value="Dinas Pemberdayaan Masyarakat dan Desa">Dinas Pemberdayaan Masyarakat dan Desa</option>
-                                            <option value="Dinas Perhubungan">Dinas Perhubungan</option>
-                                            <option value="Dinas Komunikasi dan Informatika">Dinas Komunikasi dan Informatika</option>
-                                            <option value="Dinas Koperasi dan UMKM">Dinas Koperasi dan UMKM</option>
-                                            <option value="Dinas Penanaman Modal & PTSP">Dinas Penanaman Modal & PTSP</option>
-                                            <option value="Dinas Pemuda dan Olahraga">Dinas Pemuda dan Olahraga</option>
-                                            <option value="Dinas Perpustakaan dan Kearsipan">Dinas Perpustakaan dan Kearsipan</option>
-                                            <option value="Dinas Kelautan dan Perikanan">Dinas Kelautan dan Perikanan</option>
-                                            <option value="Dinas Pariwisata dan Ekonomi Kreatif">Dinas Pariwisata dan Ekonomi Kreatif</option>
-                                            <option value="Dinas Pertanian dan Ketahanan Pangan">Dinas Pertanian dan Ketahanan Pangan</option>
-                                            <option value="Dinas Peternakan">Dinas Peternakan</option>
-                                            <option value="Dinas ESDM">Dinas ESDM</option>
-                                            <option value="Dinas Perindustrian dan Perdagangan">Dinas Perindustrian dan Perdagangan</option>
-                                            <option value="RSUD Prof. Dr. W. Z. Johannes">RSUD Prof. Dr. W. Z. Johannes</option>
-                                        </optgroup>
-                                        <optgroup label="Biro-Biro (Setda)">
-                                            <option value="Biro Hukum">Biro Hukum</option>
-                                            <option value="Biro Organisasi">Biro Organisasi</option>
-                                            <option value="Biro Pemerintahan">Biro Pemerintahan</option>
-                                            <option value="Biro Umum">Biro Umum</option>
-                                            <option value="Biro Pengadaan Barang dan Jasa">Biro Pengadaan Barang dan Jasa</option>
-                                            <option value="Biro Kesejahteraan Rakyat">Biro Kesejahteraan Rakyat</option>
-                                            <option value="Biro Perekonomian dan Administrasi Pembangunan">Biro Perekonomian & Adm Pembangunan</option>
-                                        </optgroup>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Instansi / OPD</label>
+                                    <select disabled class="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl outline-none text-gray-400 text-sm appearance-none shadow-sm">
+                                        <option value="">-- Fitur Belum Tersedia --</option>
                                     </select>
-                                    <div class="absolute inset-y-0 right-4 top-7 flex items-center pointer-events-none">
-                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                    </div>
                                 </div>
 
                                 <div class="md:col-span-2 relative">
-                                    <label for="tahun" class="block text-sm font-bold text-gray-700 mb-2">Tahun Dokumen <span class="text-red-500">*</span></label>
-                                    <select id="tahun" required class="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-gov-blue/10 focus:border-gov-blue transition-all outline-none text-gray-800 text-sm appearance-none shadow-sm cursor-pointer">
-                                        <option value="" disabled selected>-- Pilih Tahun --</option>
-                                        <option value="2024">Tahun 2024</option>
-                                        <option value="2025">Tahun 2025</option>
-                                        <option value="2026">Tahun 2026</option>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Tahun Dokumen</label>
+                                    <select disabled class="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl outline-none text-gray-400 text-sm appearance-none shadow-sm">
+                                        <option value="">-- Fitur Belum Tersedia --</option>
                                     </select>
-                                    <div class="absolute inset-y-0 right-4 top-7 flex items-center pointer-events-none">
-                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                    </div>
                                 </div>
                             </div>
 
                             <hr class="border-gray-200 my-8">
 
                             <div>
-                                <h3 class="font-bold text-gov-text mb-5 text-sm uppercase tracking-wide flex items-center gap-2">
-                                    <svg class="w-5 h-5 text-gov-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                <h3 class="font-bold text-gray-400 mb-5 text-sm uppercase tracking-wide flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
                                     Lampiran Berkas Wajib
                                 </h3>
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl hover:border-gov-blue/50 hover:bg-blue-50/20 transition-all bg-gray-50/50">
-                                        <label for="fileGAP" class="flex flex-col gap-3 cursor-pointer">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-6 h-6 bg-blue-100 text-gov-blue rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                                                <span class="text-sm font-bold text-gray-700">Dokumen GAP <span class="text-red-500">*</span></span>
-                                            </div>
-                                            <input type="file" id="fileGAP" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="block w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-gov-blue/10 file:text-gov-blue hover:file:bg-gov-blue/20 file:transition-all cursor-pointer">
-                                        </label>
+                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50">
+                                        <div class="flex flex-col gap-3">
+                                            <span class="text-sm font-bold text-gray-400">Dokumen GAP</span>
+                                            <input type="file" disabled class="block w-full text-sm text-gray-400 file:bg-gray-200 file:text-gray-400">
+                                        </div>
                                     </div>
 
-                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl hover:border-gov-blue/50 hover:bg-blue-50/20 transition-all bg-gray-50/50">
-                                        <label for="fileGBS" class="flex flex-col gap-3 cursor-pointer">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-6 h-6 bg-blue-100 text-gov-blue rounded-full flex items-center justify-center text-xs font-bold">2</span>
-                                                <span class="text-sm font-bold text-gray-700">Dokumen GBS <span class="text-red-500">*</span></span>
-                                            </div>
-                                            <input type="file" id="fileGBS" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="block w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-gov-blue/10 file:text-gov-blue hover:file:bg-gov-blue/20 file:transition-all cursor-pointer">
-                                        </label>
+                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50">
+                                        <div class="flex flex-col gap-3">
+                                            <span class="text-sm font-bold text-gray-400">Dokumen GBS</span>
+                                            <input type="file" disabled class="block w-full text-sm text-gray-400 file:bg-gray-200 file:text-gray-400">
+                                        </div>
                                     </div>
 
-                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl hover:border-gov-blue/50 hover:bg-blue-50/20 transition-all bg-gray-50/50">
-                                        <label for="fileKAK" class="flex flex-col gap-3 cursor-pointer">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-6 h-6 bg-blue-100 text-gov-blue rounded-full flex items-center justify-center text-xs font-bold">3</span>
-                                                <span class="text-sm font-bold text-gray-700">Dokumen KAK <span class="text-red-500">*</span></span>
-                                            </div>
-                                            <input type="file" id="fileKAK" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="block w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-gov-blue/10 file:text-gov-blue hover:file:bg-gov-blue/20 file:transition-all cursor-pointer">
-                                        </label>
+                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50">
+                                        <div class="flex flex-col gap-3">
+                                            <span class="text-sm font-bold text-gray-400">Dokumen KAK</span>
+                                            <input type="file" disabled class="block w-full text-sm text-gray-400 file:bg-gray-200 file:text-gray-400">
+                                        </div>
                                     </div>
 
-                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl hover:border-gov-blue/50 hover:bg-blue-50/20 transition-all bg-gray-50/50">
-                                        <label for="fileSK" class="flex flex-col gap-3 cursor-pointer">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-6 h-6 bg-blue-100 text-gov-blue rounded-full flex items-center justify-center text-xs font-bold">4</span>
-                                                <span class="text-sm font-bold text-gray-700">SK Tim Focal Point <span class="text-red-500">*</span></span>
-                                            </div>
-                                            <input type="file" id="fileSK" accept=".pdf,.doc,.docx,.xls,.xlsx" required class="block w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-gov-blue/10 file:text-gov-blue hover:file:bg-gov-blue/20 file:transition-all cursor-pointer">
-                                        </label>
+                                    <div class="p-4 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50">
+                                        <div class="flex flex-col gap-3">
+                                            <span class="text-sm font-bold text-gray-400">SK Tim Focal Point</span>
+                                            <input type="file" disabled class="block w-full text-sm text-gray-400 file:bg-gray-200 file:text-gray-400">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <button type="submit" id="submitBtn" class="w-full bg-gov-blue text-white mt-8 py-4 rounded-xl text-base font-bold gov-button flex items-center justify-center gap-2 hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all group">
-                                <span>Kirim Berkas Elektronik</span>
-                                <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <button type="button" disabled class="w-full bg-gray-300 text-gray-500 mt-8 py-4 rounded-xl text-base font-bold flex items-center justify-center gap-2 cursor-not-allowed">
+                                <span>Fitur Unggah Terkunci</span>
                             </button>
                         </form>
-                        <div id="statusMessage" class="hidden mt-6 p-4 rounded-xl text-center text-sm font-bold transition-all"></div>
                     </div>
                 </div>
             </div>
@@ -455,160 +369,6 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
-
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrQbgu3nzKSAIvBQqy7D9HOaWpszYokcTYxWepMaxobnXw7WINauNukNgFiNze0Wzr/exec";
-
-        const form = document.getElementById('uploadForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const statusMessage = document.getElementById('statusMessage');
-        const successModal = document.getElementById('successModal');
-        
-        const progressModal = document.getElementById('progressModal');
-        const progressStatus = document.getElementById('progressStatus');
-        const progressBar = document.getElementById('progressBar');
-        const progressPercent = document.getElementById('progressPercent');
-
-        function openProgressModal() {
-            progressModal.classList.remove('hidden');
-            progressModal.classList.add('flex');
-            updateProgressBar(0, 'Menyiapkan berkas...');
-            setTimeout(() => progressModal.classList.remove('opacity-0'), 10);
-        }
-
-        function closeProgressModal() {
-            progressModal.classList.add('opacity-0');
-            setTimeout(() => {
-                progressModal.classList.remove('flex');
-                progressModal.classList.add('hidden');
-            }, 300);
-        }
-
-        function updateProgressBar(percent, statusText) {
-            progressBar.style.width = percent + '%';
-            progressPercent.textContent = percent + '%';
-            if(statusText) {
-                progressStatus.textContent = statusText;
-            }
-        }
-
-        function openSuccessModal() {
-            successModal.classList.remove('hidden');
-            successModal.classList.add('flex');
-            setTimeout(() => {
-                successModal.classList.remove('opacity-0');
-                successModal.querySelector('div').classList.remove('scale-95');
-            }, 10);
-        }
-
-        function closeSuccessModal() {
-            successModal.classList.add('opacity-0');
-            successModal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => {
-                successModal.classList.remove('flex');
-                successModal.classList.add('hidden');
-                form.reset(); 
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-            }, 300);
-        }
-
-        function readFileAsBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = (event) => resolve(event.target.result.split(',')[1]);
-                reader.onerror = (error) => reject(error);
-                reader.readAsDataURL(file);
-            });
-        }
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault(); 
-
-            const opdName = document.getElementById('opdName').value;
-            const tahunDoc = document.getElementById('tahun').value;
-
-            const documents = [
-                { id: 'fileGAP', type: 'GAP' },
-                { id: 'fileGBS', type: 'GBS' },
-                { id: 'fileKAK', type: 'KAK' },
-                { id: 'fileSK',  type: 'SK Tim' }
-            ];
-
-            for (let doc of documents) {
-                const fileInput = document.getElementById(doc.id);
-                if (fileInput.files[0] && fileInput.files[0].size > 10 * 1024 * 1024) {
-                    showStatus(`Ukuran file dokumen ${doc.type} terlalu besar. Maksimal 10MB per file.`, 'error');
-                    return;
-                }
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
-            statusMessage.classList.add('hidden');
-            
-            openProgressModal();
-
-            try {
-                for (let i = 0; i < documents.length; i++) {
-                    const doc = documents[i];
-                    const fileInput = document.getElementById(doc.id);
-                    const file = fileInput.files[0];
-
-                    let currentPercent = Math.round((i / documents.length) * 100);
-                    updateProgressBar(currentPercent, `Mengirim ${doc.type} (${i + 1} dari 4)...`);
-
-                    const base64Data = await readFileAsBase64(file);
-
-                    const payload = {
-                        namaOpd: opdName,
-                        tahun: tahunDoc,
-                        jenisDokumen: doc.type,
-                        namaFile: file.name,
-                        mimeType: file.type,
-                        fileBase64: base64Data
-                    };
-
-                    await fetch(APPS_SCRIPT_URL, {
-                        method: "POST",
-                        mode: "no-cors",
-                        headers: {
-                            "Content-Type": "text/plain"
-                        },
-                        body: JSON.stringify(payload)
-                    });
-
-                    let postPercent = Math.round(((i + 1) / documents.length) * 100);
-                    updateProgressBar(postPercent, `Dokumen ${doc.type} berhasil terunggah.`);
-                    
-                    await new Promise(resolve => setTimeout(resolve, 400));
-                }
-
-                closeProgressModal();
-                setTimeout(() => {
-                    openSuccessModal();
-                }, 350);
-
-            } catch (error) {
-                closeProgressModal();
-                showStatus('Koneksi gagal saat mengunggah. Silakan periksa jaringan internet Anda.', 'error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `
-                    <span>Kirim Berkas Elektronik</span>
-                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                `;
-                submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
-            }
-        });
-
-        function showStatus(message, type) {
-            statusMessage.textContent = message;
-            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-50', 'text-red-800', 'border-green-200', 'border-red-200');
-            if (type === 'success') {
-                statusMessage.classList.add('bg-green-100', 'text-green-800', 'border', 'border-green-200');
-            } else {
-                statusMessage.classList.add('bg-red-50', 'text-red-800', 'border', 'border-red-200');
-            }
-        }
     </script>
 </body>
 </html>
